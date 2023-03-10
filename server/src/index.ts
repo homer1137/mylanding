@@ -17,26 +17,7 @@ app.use(cookieParser())
 app.use(cors())
 app.use('/api', defaultRouter)
 
-const courses = [
-  { id: 1, course: 'back-end' },
-  { id: 2, course: 'front-end' },
-  { id: 3, course: 'devops' },
-]
 
-app.get('/', (req: Request, res: Response) => {
-  const foundCourses = courses.filter((item)=>item.course.includes(req.query.course))
-  if(req.query){}
-  res.json(courses)
-})
-
-app.get('/coursed/:id', (req: Request, res: Response) => {
-  const founCourse = courses.find((item)=>item.id===+req.params.id)
-  if(!founCourse) {
-    res.status(404).json('no such course')
-  } else {
-    res.json(founCourse)
-  }
-})
 
 const start = async () => {
   try {
