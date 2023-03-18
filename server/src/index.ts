@@ -1,11 +1,13 @@
 import dotenv from 'dotenv'
-import express, { Request, Response } from 'express'
+import express from 'express'
 import cors from 'cors'
 import { json } from 'body-parser'
 import cookieParser from 'cookie-parser'
 import mongoose, { ConnectOptions } from 'mongoose'
 
 import { defaultRouter } from './router/index'
+import { userRouter } from './router/user.routes'
+import { videoRouter } from './router/video.routes'
 
 dotenv.config()
 
@@ -16,6 +18,8 @@ app.use(json())
 app.use(cookieParser())
 app.use(cors())
 app.use('/api', defaultRouter)
+app.use('/api', userRouter)
+app.use('/api', videoRouter)
 
 
 
