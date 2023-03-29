@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import {pool} from '../db'
 class CourseController {
     async createCourse(req: Request, res: Response) {
-        const {title} = req.body
+        const {title} = req.body 
         const newCourse = await pool.query(`INSERT INTO courses (title) values ($1) RETURNING *`, [title])
         res.json(newCourse.rows[0])
     }
-    async getCourses(req: Request, res: Response) {
+    async getCourses(req: Request<{}, {}, {}, {}>, res: Response) {
         const courses = await pool.query('SELECT * FROM courses ORDER BY id DESC')
         res.json(courses.rows)
     }
