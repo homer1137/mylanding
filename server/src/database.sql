@@ -24,3 +24,10 @@ CREATE TABLE access(
     id SERIAL PRIMARY KEY
 );
 
+CREATE TABLE tokens(
+    user_id integer,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    refresh_token VARCHAR(40),
+    id SERIAL PRIMARY KEY
+);
+

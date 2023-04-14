@@ -3,5 +3,8 @@ export interface UserViewModel {
   name: string
   surname: string
   email: string
-  authorised: boolean
+  is_client: boolean
+  activationLink: string
+  isActivated: boolean
+  password: string
 }

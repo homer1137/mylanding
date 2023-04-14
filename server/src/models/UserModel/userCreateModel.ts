@@ -2,5 +2,8 @@ export interface UserCreateModel {
   name: string
   surname: string
   email: string
-  authorised: boolean
+  password: string
+  is_client: boolean
+  is_activated: boolean
 }
+

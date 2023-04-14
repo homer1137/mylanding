@@ -10,10 +10,10 @@ class UserController {
     req: TypedRequestBody<UserCreateModel>,
     res: Response<IUser>,
   ) {
-    const { name, surname, email, authorised } = req.body
+    const { name, surname, email, is_client, is_activated } = req.body
     const newUser = await pool.query(
-      `INSERT INTO users (name, surname, email, authorised) values ($1, $2, $3, $4) RETURNING *`,
-      [name, surname, email, authorised],
+      `INSERT INTO users (name, surname, email, is_client, is_activated) values ($1, $2, $3, $4, $5) RETURNING *`,
+      [name, surname, email, is_client, is_activated],
     )
     res.json(newUser.rows[0])
   }
