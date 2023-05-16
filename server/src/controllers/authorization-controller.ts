@@ -16,7 +16,7 @@ class AuthorizationController {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
         return next(
-          ApiError.BadRequest('Ошибка при валидацииЖ:', errors.array()),
+          ApiError.BadRequest('Ошибка при валидации:', errors.array()),
         )
       }
       const { name, surname, email, password, is_client, is_activated } =
@@ -51,6 +51,7 @@ class AuthorizationController {
       })
       res.json(userData)
     } catch (error) {
+      console.log('error here: ', error)
       next(error)
     }
   }
@@ -61,6 +62,7 @@ class AuthorizationController {
       res.clearCookie('refreshToken');
       return res.json(token)
     } catch (error) {
+      
       next(error)
     }
   }

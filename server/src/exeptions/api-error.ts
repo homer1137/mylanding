@@ -12,6 +12,10 @@ export class ApiError extends Error {
     return new ApiError(401, 'Пользователь не авторизован')
   }
 
+  public static LoginError(message: string, errors: any[] = []) {
+    return new ApiError(400, 'Password or login is incorrect. ', errors,)
+  }
+
   public static BadRequest(message: string, errors: any[] = []) {
     return new ApiError(400, message, errors)
   }

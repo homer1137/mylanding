@@ -80,11 +80,11 @@ class UserService {
   async login(email: string, password: string) {
     const user = await pool.query(`SELECT * from users WHERE email=$1`, [email])
     if (!user.rows.length) {
-      throw ApiError.BadRequest(`Не найдет пользователь с email ${email}`)
+      throw ApiError.LoginError(`Не найдет пользователь с email ${email}`)
     }
     const isPassEquals = await compare(password, user.rows[0].password)
     if (!isPassEquals) {
-      throw ApiError.BadRequest('Неверный пароль')
+      throw ApiError.LoginError('Неверный пароль')
     }
     const userDto = new UserDto(
       user.rows[0].email,
